@@ -1,0 +1,36 @@
+Flume Agent:
+spooldir - kafkachannel (不需要配置sink)
+kafkachannel - HDFS (不需要配置source)
+
+Hive 键表语句
+create external table test 
+(ymd string, hms string, message string, version string) 
+partitioned by (day string)
+row format delimited fields terminated by ' '
+location '/user/training/flume-kafka-test';
+
+Hive 添加分区
+alter table test 
+add partition(day='2018-08-04') partition(day='2018-08-05') partition(day='2018-08-06');
+
+
+DROP TABLE IF EXISTS logs;
+CREATE EXTERNAL TABLE logs
+PARTITIONED BY (day string)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.avro.AvroSerDe'
+WITH SERDEPROPERTIES ('avro.schema.url'='file:///usr/lib/flume/conf/schema.avsc')
+STORED AS
+INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+LOCATION '/user/training/flume-kafka-test';
+
+alter table logs 
+add partition(day='2018-08-04') partition(day='2018-08-05') partition(day='2018-08-06');
+
+STORED AS
+INPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerInputFormat'
+OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.avro.AvroContainerOutputFormat'
+LOCATION '/user/training/Shane/';
+
+java heap space
+JAVA_OPTS="-Xmx512m"

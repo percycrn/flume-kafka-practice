@@ -1,0 +1,34 @@
+{
+    "type":"record",
+    "name":"avro",
+    "fields":[
+        {
+          "name" : "date",
+          "type" : ["string","null"]
+        },
+        {
+          "name" : "time",
+          "type" : ["string","null"]
+        }, 
+        {
+          "name" : "stage",
+          "type" : ["string","null"]
+        }, 
+        {
+          "name" : "status",
+          "type" : ["string","null"]
+        },
+        {
+          "name" : "name",
+          "type" : ["string","null"]
+        },
+        {
+          "name" : "platform",
+          "type" : ["string","null"]
+        },
+        {
+          "name" : "version",
+          "type" : ["string","null"]
+        }
+    ]
+}

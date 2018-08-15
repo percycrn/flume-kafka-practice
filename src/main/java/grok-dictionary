@@ -1,0 +1,9 @@
+# https://github.com/kite-sdk/kite/blob/master/kite-morphlines/kite-morphlines-core/src/test/resources/grok-dictionaries/grok-patterns
+#TIMESTAMP \d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}
+DATE \d{4}-\d{2}-\d{2}
+TIME \d{2}:\d{2}:\d{2}
+STAGE .*?
+STATUS .*?
+NAME .*?
+PLATFORM .*?
+VERSION .*?
